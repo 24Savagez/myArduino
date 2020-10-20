@@ -2,6 +2,8 @@
 int trigPin = 12;  //Trigger
 int echoPin = 13; //Echo
 long duration,cm,us,inch;
+
+//GGWP
  
 
 int D1 = 8;
