@@ -4,7 +4,9 @@
 #include <Servo.h> 
 
 #define TRIG_PIN A0 
-#define ECHO_PIN A1 
+#define ECHO_PIN A1
+int pin_A2 = A2;
+int pin_A3 = A3; 
 #define MAX_DISTANCE 200 
 #define MAX_SPEED 190 // sets speed of DC  motors
 #define MAX_SPEED_OFFSET 20
@@ -18,7 +20,7 @@ AF_DCMotor motor4(4, MOTOR34_1KHZ);
 Servo myservo;   
 
 boolean goesForward=false;
-int distance = 150;
+int distance = 200;
 int speedSet = 0;
 
 void setup() {
@@ -40,11 +42,18 @@ void setup() {
 }
 
 void loop() {
- int distanceR = 0;
- int distanceL =  0;
+ int valL = analogRead(pin_A2);
+ int valR = analogRead(pin_A3);
+ 
  delay(40);
  Serial.println(ECHO_PIN);
- if(distance<=15)
+ Serial.println(valL);
+ Serial.println(valR);
+ 
+ int distanceR = 0;
+ int distanceL =  0;
+
+ if(distance<=15 || valL < 40 || valR < 40)
  {
   moveStop();
   delay(100);
